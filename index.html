@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Listas
-        </title>
-        <link rel="stylesheet" href="assets/main.css">
-    </head>
-<body bgcolor="aqua">
-    <h1>Lista de Tareas</h1>
-    <div>
-        <input type="text" id="task-input" placeholder="Nueva tarea...">
-        <button id="add-task-btn">Agregar</button>
-    </div>
-    <ul id="task-list"></ul>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="assets/main.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Lista de Tareas</h1>
+            <div class="field has-addons">
+                <div class="control">
+                    <input id="new-task-input" class="input" type="text" placeholder="Nueva tarea">
+                </div>
+                <div class="control">
+                    <button id="add-task-btn" class="button is-primary">Agregar Tarea</button>
+                </div>
+            </div>
+            <ul id="task-list" class="list"></ul>
+        </div>
+    </section>
+
     <script src="assets/script.js"></script>
-
-
 </body>
 </html>

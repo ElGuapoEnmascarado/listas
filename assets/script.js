@@ -1,43 +1,42 @@
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-    const addTaskBtn = document.getElementById('add-task-btn');
-    const taskInput = document.getElementById('task-input');
-    const taskList = document.getElementById('task-list');
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('add-task-btn').addEventListener('click', addTask);
 
-    // Evento para agregar una tarea
-    addTaskBtn.addEventListener('click', () => {
+    function addTask() {
+        const taskInput = document.getElementById('new-task-input');
         const taskText = taskInput.value.trim();
-        if (taskText !== '') {
-            addTask(taskText);
-            taskInput.value = '';
-        }
-    });
 
-    // Evento para manejar los clics en los botones de la lista de tareas
-    taskList.addEventListener('click', (e) => {
-        if (e.target.classList.contains('delete-btn')) {
-            e.target.parentElement.remove(); // Eliminar la tarea
-        } else if (e.target.classList.contains('complete-btn')) {
-            e.target.parentElement.classList.toggle('completed'); // Marcar como completada
+        if (taskText === '') {
+            alert('Por favor ingrese una tarea.');
+            return;
         }
-    });
 
-    // Función para agregar una tarea a la lista
-    function addTask(taskText) {
-        const li = document.createElement('li');
-        li.textContent = taskText;
-        li.className = 'task-item';
+        const taskList = document.getElementById('task-list');
+
+        const taskItem = document.createElement('li');
+        taskItem.className = 'box';
+
+        const taskContent = document.createElement('span');
+        taskContent.textContent = taskText;
 
         const completeBtn = document.createElement('button');
         completeBtn.textContent = 'Completar';
-        completeBtn.className = 'complete-btn';
-        li.appendChild(completeBtn);
+        completeBtn.className = 'button is-small is-success is-light';
+        completeBtn.addEventListener('click', () => {
+            taskContent.classList.toggle('completed');
+        });
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Eliminar';
-        deleteBtn.className = 'delete-btn';
-        li.appendChild(deleteBtn);
+        deleteBtn.textContent = 'Borrar';
+        deleteBtn.className = 'button is-small is-danger is-light';
+        deleteBtn.addEventListener('click', () => {
+            taskList.removeChild(taskItem);
+        });
 
-        taskList.appendChild(li);
+        taskItem.appendChild(taskContent);
+        taskItem.appendChild(completeBtn);
+        taskItem.appendChild(deleteBtn);
+        taskList.appendChild(taskItem);
+
+        taskInput.value = '';
     }
 });
